@@ -1,0 +1,123 @@
+GAS LISTING C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s 			page 1
+
+
+   1               		.file	"main.cpp"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               		.section	.text._Z10loadData16j,"ax",@progbits
+   9               	.global	_Z10loadData16j
+  11               	_Z10loadData16j:
+  12               	/* prologue: function */
+  13               	/* frame size = 0 */
+  14               	/* stack size = 0 */
+  15               	.L__stack_usage = 0
+  16 0000 482F      		mov r20,r24
+  17 0002 592F      		mov r21,r25
+  18 0004 80E0      		ldi r24,0
+  19 0006 90E0      		ldi r25,0
+  20 0008 00C0      		rjmp .L4
+  21               	.L2:
+  22 000a 5898      		cbi 0xb,0
+  23               	.L3:
+  24 000c 599A      		sbi 0xb,1
+  25 000e 5998      		cbi 0xb,1
+  26 0010 0196      		adiw r24,1
+  27 0012 8031      		cpi r24,16
+  28 0014 9105      		cpc r25,__zero_reg__
+  29 0016 01F0      		breq .L6
+  30               	.L4:
+  31 0018 9A01      		movw r18,r20
+  32 001a 082E      		mov r0,r24
+  33 001c 00C0      		rjmp 2f
+  34               		1:
+  35 001e 3695      		lsr r19
+  36 0020 2795      		ror r18
+  37               		2:
+  38 0022 0A94      		dec r0
+  39 0024 02F4      		brpl 1b
+  40 0026 20FF      		sbrs r18,0
+  41 0028 00C0      		rjmp .L2
+  42 002a 589A      		sbi 0xb,0
+  43 002c 00C0      		rjmp .L3
+  44               	.L6:
+  45 002e 5A9A      		sbi 0xb,2
+  46 0030 5A98      		cbi 0xb,2
+  47               	/* epilogue start */
+  48 0032 0895      		ret
+  50               		.section	.text.main,"ax",@progbits
+  51               	.global	main
+  53               	main:
+  54               	/* prologue: function */
+  55               	/* frame size = 0 */
+  56               	/* stack size = 0 */
+  57               	.L__stack_usage = 0
+  58 0000 509A      		sbi 0xa,0
+  59 0002 519A      		sbi 0xa,1
+  60 0004 529A      		sbi 0xa,2
+GAS LISTING C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s 			page 2
+
+
+  61 0006 10E0      		ldi r17,0
+  62 0008 C0E0      		ldi r28,0
+  63 000a D0E8      		ldi r29,lo8(-128)
+  64 000c 01E0      		ldi r16,lo8(1)
+  65 000e 00C0      		rjmp .L8
+  66               	.L9:
+  67 0010 D695      		lsr r29
+  68 0012 C795      		ror r28
+  69 0014 C130      		cpi r28,1
+  70 0016 D105      		cpc r29,__zero_reg__
+  71 0018 01F4      		brne .L8
+  72               	.L10:
+  73 001a 1027      		eor r17,r16
+  74               	.L8:
+  75 001c CE01      		movw r24,r28
+  76 001e 0E94 0000 		call _Z10loadData16j
+  77 0022 2FEF      		ldi r18,lo8(799999)
+  78 0024 84E3      		ldi r24,hi8(799999)
+  79 0026 9CE0      		ldi r25,hlo8(799999)
+  80 0028 2150      	1:	subi r18,1
+  81 002a 8040      		sbci r24,0
+  82 002c 9040      		sbci r25,0
+  83 002e 01F4      		brne 1b
+  84 0030 00C0      		rjmp .
+  85 0032 0000      		nop
+  86 0034 1123      		tst r17
+  87 0036 01F0      		breq .L9
+  88 0038 CC0F      		lsl r28
+  89 003a DD1F      		rol r29
+  90 003c C115      		cp r28,__zero_reg__
+  91 003e 20E8      		ldi r18,-128
+  92 0040 D207      		cpc r29,r18
+  93 0042 01F4      		brne .L8
+  94 0044 00C0      		rjmp .L10
+  96               		.ident	"GCC: (GNU) 12.1.0"
+GAS LISTING C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.cpp
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:2      *ABS*:000000000000003e __SP_H__
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:3      *ABS*:000000000000003d __SP_L__
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:4      *ABS*:000000000000003f __SREG__
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:5      *ABS*:0000000000000000 __tmp_reg__
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:6      *ABS*:0000000000000001 __zero_reg__
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:11     .text._Z10loadData16j:0000000000000000 _Z10loadData16j
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:53     .text.main:0000000000000000 main
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:84     .text.main:0000000000000032 L0
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:30     .text._Z10loadData16j:0000000000000018 .L4
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:44     .text._Z10loadData16j:000000000000002e .L6
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:37     .text._Z10loadData16j:0000000000000022 .L21
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:34     .text._Z10loadData16j:000000000000001e .L11
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:21     .text._Z10loadData16j:000000000000000a .L2
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:23     .text._Z10loadData16j:000000000000000c .L3
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:74     .text.main:000000000000001c .L8
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:80     .text.main:0000000000000028 .L12
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:66     .text.main:0000000000000010 .L9
+C:\Users\coruj\AppData\Local\Temp\ccRh2gvf.s:72     .text.main:000000000000001a .L10
+
+NO UNDEFINED SYMBOLS
