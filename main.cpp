@@ -26,16 +26,6 @@
 //AT+NAME?
 //Responde no terminal: <param>
 
-
-adc.enable();
-adc.setReference(Adc::Reference::POWER_SUPPLY);
-adc.setPrescaler(Adc::Prescaler::PRESCALER_128);
-adc.setMode(Adc::Mode::AUTO_CONTINUOUS);
-adc.setChannel(Adc::Channel::CHANNEL_0);
-adc.disableDigitalInput(Adc::DigitalInput::INPUT_0);
-adc.activateInterrupt();
-adc.startConversion();
-sei();
 //br@y terminal
 int main()
 {
