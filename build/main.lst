@@ -1,0 +1,611 @@
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 1
+
+
+   1               		.file	"main.cpp"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               		.section	.text._Z7getTickv,"ax",@progbits
+   9               		.weak	_Z7getTickv
+  11               	_Z7getTickv:
+  12               	/* prologue: function */
+  13               	/* frame size = 0 */
+  14               	/* stack size = 0 */
+  15               	.L__stack_usage = 0
+  16 0000 60E0      		ldi r22,0
+  17 0002 70E0      		ldi r23,0
+  18 0004 CB01      		movw r24,r22
+  19               	/* epilogue start */
+  20 0006 0895      		ret
+  22               		.section	.rodata.main.str1.1,"aMS",@progbits,1
+  23               	.LC0:
+  24 0000 5B4F 4B5D 		.string	"[OK] USART configuration!\r"
+  24      2055 5341 
+  24      5254 2063 
+  24      6F6E 6669 
+  24      6775 7261 
+  25               	.LC1:
+  26 001b 00        		.string	""
+  27               	.LC2:
+  28 001c 5B46 4149 		.string	"[FAIL] SD card not mounted: %d\r"
+  28      4C5D 2053 
+  28      4420 6361 
+  28      7264 206E 
+  28      6F74 206D 
+  29               	.LC3:
+  30 003c 5B20 4F4B 		.string	"[ OK ] SD card mounted!\r"
+  30      205D 2053 
+  30      4420 6361 
+  30      7264 206D 
+  30      6F75 6E74 
+  31               	.LC4:
+  32 0055 6F75 745F 		.string	"out_file.txt"
+  32      6669 6C65 
+  32      2E74 7874 
+  32      00
+  33               	.LC5:
+  34 0062 5B46 4149 		.string	"[FAIL] File not created: %d\r"
+  34      4C5D 2046 
+  34      696C 6520 
+  34      6E6F 7420 
+  34      6372 6561 
+  35               	.LC6:
+  36 007f 5B20 4F4B 		.string	"[ OK ] File created!\r"
+  36      205D 2046 
+  36      696C 6520 
+  36      6372 6561 
+  36      7465 6421 
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 2
+
+
+  37               		.section	.text.main,"ax",@progbits
+  38               	.global	main
+  40               	main:
+  41               	/* prologue: function */
+  42               	/* frame size = 0 */
+  43               	/* stack size = 0 */
+  44               	.L__stack_usage = 0
+  45 0000 42E0      		ldi r20,lo8(2)
+  46 0002 6AE2      		ldi r22,lo8(42)
+  47 0004 70E0      		ldi r23,0
+  48 0006 80E0      		ldi r24,lo8(lcd)
+  49 0008 90E0      		ldi r25,hi8(lcd)
+  50 000a 0E94 0000 		call _ZN7Hd4478011dataPortSetEPVhh
+  51 000e 01E0      		ldi r16,lo8(1)
+  52 0010 20E0      		ldi r18,0
+  53 0012 42E0      		ldi r20,lo8(2)
+  54 0014 67E2      		ldi r22,lo8(39)
+  55 0016 70E0      		ldi r23,0
+  56 0018 80E0      		ldi r24,lo8(lcd)
+  57 001a 90E0      		ldi r25,hi8(lcd)
+  58 001c 0E94 0000 		call _ZN7Hd4478014controlPortSetEPVhhhh
+  59 0020 21E0      		ldi r18,lo8(1)
+  60 0022 40E0      		ldi r20,0
+  61 0024 6CE6      		ldi r22,lo8(108)
+  62 0026 80E0      		ldi r24,lo8(lcd)
+  63 0028 90E0      		ldi r25,hi8(lcd)
+  64 002a 0E94 0000 		call _ZN7Hd447804initENS_4SizeENS_4FontEbb
+  65 002e 8DE9      		ldi r24,lo8(-99)
+  66 0030 87BD      		out 0x27,r24
+  67 0032 45E0      		ldi r20,lo8(5)
+  68 0034 62E0      		ldi r22,lo8(2)
+  69 0036 80E0      		ldi r24,lo8(timer0)
+  70 0038 90E0      		ldi r25,hi8(timer0)
+  71 003a 0E94 0000 		call _ZN6Timer04initENS_4ModeENS_11ClockSourceE
+  72 003e EEE6      		ldi r30,lo8(110)
+  73 0040 F0E0      		ldi r31,0
+  74 0042 8081      		ld r24,Z
+  75 0044 8260      		ori r24,lo8(2)
+  76 0046 8083      		st Z,r24
+  77 0048 45E0      		ldi r20,lo8(5)
+  78 004a 64E0      		ldi r22,lo8(4)
+  79 004c 80E0      		ldi r24,lo8(timer1)
+  80 004e 90E0      		ldi r25,hi8(timer1)
+  81 0050 0E94 0000 		call _ZN6Timer14initENS_4ModeENS_11ClockSourceE
+  82 0054 8FB7      		in r24,__SREG__
+  83               	/* #APP */
+  84               	 ;  50 "f:\vscode-win\toolchains\avr-gcc\avr\include\util\atomic.h" 1
+  85 0056 F894      		cli
+  86               	 ;  0 "" 2
+  87               	/* #NOAPP */
+  88 0058 23E0      		ldi r18,lo8(3)
+  89 005a 3DE3      		ldi r19,lo8(61)
+  90 005c 3093 8900 		sts 136+1,r19
+  91 0060 2093 8800 		sts 136,r18
+  92 0064 8FBF      		out __SREG__,r24
+  93 0066 EFE6      		ldi r30,lo8(111)
+  94 0068 F0E0      		ldi r31,0
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 3
+
+
+  95 006a 8081      		ld r24,Z
+  96 006c 8260      		ori r24,lo8(2)
+  97 006e 8083      		st Z,r24
+  98 0070 E1EC      		ldi r30,lo8(-63)
+  99 0072 F0E0      		ldi r31,0
+ 100 0074 8081      		ld r24,Z
+ 101 0076 8860      		ori r24,lo8(8)
+ 102 0078 8083      		st Z,r24
+ 103 007a 80E0      		ldi r24,lo8(usart0)
+ 104 007c 90E0      		ldi r25,hi8(usart0)
+ 105 007e 0E94 0000 		call _ZN6Usart04initEv
+ 106 0082 E0E0      		ldi r30,lo8(__iob)
+ 107 0084 F0E0      		ldi r31,hi8(__iob)
+ 108 0086 80E0      		ldi r24,lo8(usartStream)
+ 109 0088 90E0      		ldi r25,hi8(usartStream)
+ 110 008a 9583      		std Z+5,r25
+ 111 008c 8483      		std Z+4,r24
+ 112 008e 9383      		std Z+3,r25
+ 113 0090 8283      		std Z+2,r24
+ 114 0092 9183      		std Z+1,r25
+ 115 0094 8083      		st Z,r24
+ 116               	/* #APP */
+ 117               	 ;  62 "main.cpp" 1
+ 118 0096 7894      		sei
+ 119               	 ;  0 "" 2
+ 120               	/* #NOAPP */
+ 121 0098 80E0      		ldi r24,lo8(.LC0)
+ 122 009a 90E0      		ldi r25,hi8(.LC0)
+ 123 009c 9F93      		push r25
+ 124 009e 8F93      		push r24
+ 125 00a0 0E94 0000 		call printf
+ 126 00a4 82E1      		ldi r24,lo8(18)
+ 127 00a6 90E0      		ldi r25,0
+ 128 00a8 0E94 0000 		call sdCardCreate
+ 129 00ac 40E0      		ldi r20,0
+ 130 00ae 60E0      		ldi r22,lo8(.LC1)
+ 131 00b0 70E0      		ldi r23,hi8(.LC1)
+ 132 00b2 80E0      		ldi r24,lo8(disk)
+ 133 00b4 90E0      		ldi r25,hi8(disk)
+ 134 00b6 0E94 0000 		call f_mount
+ 135 00ba 282F      		mov r18,r24
+ 136 00bc 392F      		mov r19,r25
+ 137 00be 3093 0000 		sts res+1,r19
+ 138 00c2 2093 0000 		sts res,r18
+ 139 00c6 0F90      		pop __tmp_reg__
+ 140 00c8 0F90      		pop __tmp_reg__
+ 141 00ca 232B      		or r18,r19
+ 142 00cc 01F0      		breq .L3
+ 143 00ce 9F93      		push r25
+ 144 00d0 8F93      		push r24
+ 145 00d2 80E0      		ldi r24,lo8(.LC2)
+ 146 00d4 90E0      		ldi r25,hi8(.LC2)
+ 147 00d6 9F93      		push r25
+ 148 00d8 8F93      		push r24
+ 149 00da 0E94 0000 		call printf
+ 150 00de 0F90      		pop __tmp_reg__
+ 151 00e0 0F90      		pop __tmp_reg__
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 4
+
+
+ 152 00e2 0F90      		pop __tmp_reg__
+ 153 00e4 0F90      		pop __tmp_reg__
+ 154               	.L4:
+ 155 00e6 4AE0      		ldi r20,lo8(10)
+ 156 00e8 60E0      		ldi r22,lo8(.LC4)
+ 157 00ea 70E0      		ldi r23,hi8(.LC4)
+ 158 00ec 80E0      		ldi r24,lo8(file)
+ 159 00ee 90E0      		ldi r25,hi8(file)
+ 160 00f0 0E94 0000 		call f_open
+ 161 00f4 282F      		mov r18,r24
+ 162 00f6 392F      		mov r19,r25
+ 163 00f8 3093 0000 		sts res+1,r19
+ 164 00fc 2093 0000 		sts res,r18
+ 165 0100 232B      		or r18,r19
+ 166 0102 01F0      		breq .L5
+ 167 0104 9F93      		push r25
+ 168 0106 8F93      		push r24
+ 169 0108 80E0      		ldi r24,lo8(.LC5)
+ 170 010a 90E0      		ldi r25,hi8(.LC5)
+ 171 010c 9F93      		push r25
+ 172 010e 8F93      		push r24
+ 173 0110 0E94 0000 		call printf
+ 174 0114 0F90      		pop __tmp_reg__
+ 175 0116 0F90      		pop __tmp_reg__
+ 176 0118 0F90      		pop __tmp_reg__
+ 177 011a 0F90      		pop __tmp_reg__
+ 178               	.L6:
+ 179               	.L7:
+ 180 011c 00C0      		rjmp .L7
+ 181               	.L3:
+ 182 011e 80E0      		ldi r24,lo8(.LC3)
+ 183 0120 90E0      		ldi r25,hi8(.LC3)
+ 184 0122 9F93      		push r25
+ 185 0124 8F93      		push r24
+ 186 0126 0E94 0000 		call printf
+ 187 012a 0F90      		pop __tmp_reg__
+ 188 012c 0F90      		pop __tmp_reg__
+ 189 012e 00C0      		rjmp .L4
+ 190               	.L5:
+ 191 0130 80E0      		ldi r24,lo8(.LC6)
+ 192 0132 90E0      		ldi r25,hi8(.LC6)
+ 193 0134 9F93      		push r25
+ 194 0136 8F93      		push r24
+ 195 0138 0E94 0000 		call printf
+ 196 013c 0F90      		pop __tmp_reg__
+ 197 013e 0F90      		pop __tmp_reg__
+ 198 0140 00C0      		rjmp .L6
+ 200               		.section	.rodata._Z22timer1CompareACallbackv.str1.1,"aMS",@progbits,1
+ 201               	.LC7:
+ 202 0000 2020 2020 		.string	"    Umidade:\n    %d kg/m3"
+ 202      556D 6964 
+ 202      6164 653A 
+ 202      0A20 2020 
+ 202      2025 6420 
+ 203               	.LC8:
+ 204 001a 2530 3264 		.string	"%02d/%02d/%04d %02d:%02d:%02d - Umidade = %d kg/m3.\r\n"
+ 204      2F25 3032 
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 5
+
+
+ 204      642F 2530 
+ 204      3464 2025 
+ 204      3032 643A 
+ 205               	.LC9:
+ 206 0050 5B46 4149 		.string	"[FAIL] Data not written: %d\r"
+ 206      4C5D 2044 
+ 206      6174 6120 
+ 206      6E6F 7420 
+ 206      7772 6974 
+ 207               	.LC10:
+ 208 006d 5B20 4F4B 		.string	"[ OK ] Data written (%d bytes)!\r"
+ 208      205D 2044 
+ 208      6174 6120 
+ 208      7772 6974 
+ 208      7465 6E20 
+ 209               	.LC11:
+ 210 008e 5B46 4149 		.string	"[FAIL] File not saved: %d\r"
+ 210      4C5D 2046 
+ 210      696C 6520 
+ 210      6E6F 7420 
+ 210      7361 7665 
+ 211               	.LC12:
+ 212 00a9 5B20 4F4B 		.string	"[ OK ] File saved!\r"
+ 212      205D 2046 
+ 212      696C 6520 
+ 212      7361 7665 
+ 212      6421 0D00 
+ 213               		.section	.text._Z22timer1CompareACallbackv,"ax",@progbits
+ 214               	.global	_Z22timer1CompareACallbackv
+ 216               	_Z22timer1CompareACallbackv:
+ 217 0000 CF93      		push r28
+ 218 0002 DF93      		push r29
+ 219               	/* prologue: function */
+ 220               	/* frame size = 0 */
+ 221               	/* stack size = 2 */
+ 222               	.L__stack_usage = 2
+ 223 0004 8091 0000 		lds r24,counter
+ 224 0008 8A30      		cpi r24,lo8(10)
+ 225 000a 01F0      		breq .L14
+ 226 000c 8091 0000 		lds r24,counter
+ 227 0010 8F5F      		subi r24,lo8(-(1))
+ 228 0012 8093 0000 		sts counter,r24
+ 229               	.L8:
+ 230               	/* epilogue start */
+ 231 0016 DF91      		pop r29
+ 232 0018 CF91      		pop r28
+ 233 001a 0895      		ret
+ 234               	.L14:
+ 235 001c 81E0      		ldi r24,lo8(1)
+ 236 001e 8093 0000 		sts counter,r24
+ 237 0022 80E0      		ldi r24,lo8(lcd)
+ 238 0024 90E0      		ldi r25,hi8(lcd)
+ 239 0026 0E94 0000 		call _ZN7Hd447805stdioEv
+ 240 002a 8091 0000 		lds r24,umidade
+ 241 002e 1F92      		push __zero_reg__
+ 242 0030 8F93      		push r24
+ 243 0032 80E0      		ldi r24,lo8(.LC7)
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 6
+
+
+ 244 0034 90E0      		ldi r25,hi8(.LC7)
+ 245 0036 9F93      		push r25
+ 246 0038 8F93      		push r24
+ 247 003a 0E94 0000 		call printf
+ 248 003e E0E0      		ldi r30,lo8(__iob)
+ 249 0040 F0E0      		ldi r31,hi8(__iob)
+ 250 0042 80E0      		ldi r24,lo8(usartStream)
+ 251 0044 90E0      		ldi r25,hi8(usartStream)
+ 252 0046 9583      		std Z+5,r25
+ 253 0048 8483      		std Z+4,r24
+ 254 004a 9383      		std Z+3,r25
+ 255 004c 8283      		std Z+2,r24
+ 256 004e 9183      		std Z+1,r25
+ 257 0050 8083      		st Z,r24
+ 258 0052 7091 0000 		lds r23,umidade
+ 259 0056 E0E0      		ldi r30,lo8(data)
+ 260 0058 F0E0      		ldi r31,hi8(data)
+ 261 005a 6681      		ldd r22,Z+6
+ 262 005c 5581      		ldd r21,Z+5
+ 263 005e 4481      		ldd r20,Z+4
+ 264 0060 8281      		ldd r24,Z+2
+ 265 0062 9381      		ldd r25,Z+3
+ 266 0064 3181      		ldd r19,Z+1
+ 267 0066 2081      		ld r18,Z
+ 268 0068 1F92      		push __zero_reg__
+ 269 006a 7F93      		push r23
+ 270 006c 1F92      		push __zero_reg__
+ 271 006e 6F93      		push r22
+ 272 0070 1F92      		push __zero_reg__
+ 273 0072 5F93      		push r21
+ 274 0074 1F92      		push __zero_reg__
+ 275 0076 4F93      		push r20
+ 276 0078 9F93      		push r25
+ 277 007a 8F93      		push r24
+ 278 007c 1F92      		push __zero_reg__
+ 279 007e 3F93      		push r19
+ 280 0080 1F92      		push __zero_reg__
+ 281 0082 2F93      		push r18
+ 282 0084 80E0      		ldi r24,lo8(.LC8)
+ 283 0086 90E0      		ldi r25,hi8(.LC8)
+ 284 0088 9F93      		push r25
+ 285 008a 8F93      		push r24
+ 286 008c C0E0      		ldi r28,lo8(strBuffer)
+ 287 008e D0E0      		ldi r29,hi8(strBuffer)
+ 288 0090 DF93      		push r29
+ 289 0092 CF93      		push r28
+ 290 0094 0E94 0000 		call sprintf
+ 291               		0:
+ 292 0098 0990      		ld __tmp_reg__,Y+
+ 293 009a 0020      		tst __tmp_reg__
+ 294 009c 01F4      		brne 0b
+ 295 009e AE01      		movw r20,r28
+ 296 00a0 4050      		subi r20,lo8(strBuffer+1)
+ 297 00a2 5040      		sbci r21,hi8(strBuffer+1)
+ 298 00a4 20E0      		ldi r18,lo8(bytesWritten)
+ 299 00a6 30E0      		ldi r19,hi8(bytesWritten)
+ 300 00a8 60E0      		ldi r22,lo8(strBuffer)
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 7
+
+
+ 301 00aa 70E0      		ldi r23,hi8(strBuffer)
+ 302 00ac 80E0      		ldi r24,lo8(file)
+ 303 00ae 90E0      		ldi r25,hi8(file)
+ 304 00b0 0E94 0000 		call f_write
+ 305 00b4 282F      		mov r18,r24
+ 306 00b6 392F      		mov r19,r25
+ 307 00b8 3093 0000 		sts res+1,r19
+ 308 00bc 2093 0000 		sts res,r18
+ 309 00c0 8DB7      		in r24,__SP_L__
+ 310 00c2 9EB7      		in r25,__SP_H__
+ 311 00c4 4696      		adiw r24,22
+ 312 00c6 0FB6      		in __tmp_reg__,__SREG__
+ 313 00c8 F894      		cli
+ 314 00ca 9EBF      		out __SP_H__,r25
+ 315 00cc 0FBE      		out __SREG__,__tmp_reg__
+ 316 00ce 8DBF      		out __SP_L__,r24
+ 317 00d0 2115      		cp r18,__zero_reg__
+ 318 00d2 3105      		cpc r19,__zero_reg__
+ 319 00d4 01F0      		breq .L10
+ 320 00d6 3F93      		push r19
+ 321 00d8 2F93      		push r18
+ 322 00da 80E0      		ldi r24,lo8(.LC9)
+ 323 00dc 90E0      		ldi r25,hi8(.LC9)
+ 324 00de 9F93      		push r25
+ 325 00e0 8F93      		push r24
+ 326 00e2 0E94 0000 		call printf
+ 327 00e6 0F90      		pop __tmp_reg__
+ 328 00e8 0F90      		pop __tmp_reg__
+ 329 00ea 0F90      		pop __tmp_reg__
+ 330 00ec 0F90      		pop __tmp_reg__
+ 331               	.L11:
+ 332 00ee 80E0      		ldi r24,lo8(file)
+ 333 00f0 90E0      		ldi r25,hi8(file)
+ 334 00f2 0E94 0000 		call f_sync
+ 335 00f6 282F      		mov r18,r24
+ 336 00f8 392F      		mov r19,r25
+ 337 00fa 3093 0000 		sts res+1,r19
+ 338 00fe 2093 0000 		sts res,r18
+ 339 0102 232B      		or r18,r19
+ 340 0104 01F0      		breq .L12
+ 341 0106 9F93      		push r25
+ 342 0108 8F93      		push r24
+ 343 010a 80E0      		ldi r24,lo8(.LC11)
+ 344 010c 90E0      		ldi r25,hi8(.LC11)
+ 345 010e 9F93      		push r25
+ 346 0110 8F93      		push r24
+ 347 0112 0E94 0000 		call printf
+ 348 0116 0F90      		pop __tmp_reg__
+ 349 0118 0F90      		pop __tmp_reg__
+ 350 011a 0F90      		pop __tmp_reg__
+ 351 011c 0F90      		pop __tmp_reg__
+ 352 011e 00C0      		rjmp .L8
+ 353               	.L10:
+ 354 0120 8091 0000 		lds r24,bytesWritten+1
+ 355 0124 8F93      		push r24
+ 356 0126 8091 0000 		lds r24,bytesWritten
+ 357 012a 8F93      		push r24
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 8
+
+
+ 358 012c 80E0      		ldi r24,lo8(.LC10)
+ 359 012e 90E0      		ldi r25,hi8(.LC10)
+ 360 0130 9F93      		push r25
+ 361 0132 8F93      		push r24
+ 362 0134 0E94 0000 		call printf
+ 363 0138 0F90      		pop __tmp_reg__
+ 364 013a 0F90      		pop __tmp_reg__
+ 365 013c 0F90      		pop __tmp_reg__
+ 366 013e 0F90      		pop __tmp_reg__
+ 367 0140 00C0      		rjmp .L11
+ 368               	.L12:
+ 369 0142 80E0      		ldi r24,lo8(.LC12)
+ 370 0144 90E0      		ldi r25,hi8(.LC12)
+ 371 0146 9F93      		push r25
+ 372 0148 8F93      		push r24
+ 373 014a 0E94 0000 		call printf
+ 374 014e 0F90      		pop __tmp_reg__
+ 375 0150 0F90      		pop __tmp_reg__
+ 376 0152 00C0      		rjmp .L8
+ 378               		.section	.text._Z22timer0CompareACallbackv,"ax",@progbits
+ 379               	.global	_Z22timer0CompareACallbackv
+ 381               	_Z22timer0CompareACallbackv:
+ 382               	/* prologue: function */
+ 383               	/* frame size = 0 */
+ 384               	/* stack size = 0 */
+ 385               	.L__stack_usage = 0
+ 386 0000 0E94 0000 		call mmc_disk_timerproc
+ 387               	/* epilogue start */
+ 388 0004 0895      		ret
+ 390               		.section	.text._GLOBAL__sub_I_counter,"ax",@progbits
+ 392               	_GLOBAL__sub_I_counter:
+ 393               	/* prologue: function */
+ 394               	/* frame size = 0 */
+ 395               	/* stack size = 0 */
+ 396               	.L__stack_usage = 0
+ 397 0000 80E0      		ldi r24,lo8(lcd)
+ 398 0002 90E0      		ldi r25,hi8(lcd)
+ 399 0004 0E94 0000 		call _ZN7Hd44780C1Ev
+ 400               	/* epilogue start */
+ 401 0008 0895      		ret
+ 403               		.global __do_global_ctors
+ 404               		.section .ctors,"a",@progbits
+ 405               		.p2align	1
+ 406 0000 0000      		.word	gs(_GLOBAL__sub_I_counter)
+ 407               		.section	.text._GLOBAL__sub_D_counter,"ax",@progbits
+ 409               	_GLOBAL__sub_D_counter:
+ 410               	/* prologue: function */
+ 411               	/* frame size = 0 */
+ 412               	/* stack size = 0 */
+ 413               	.L__stack_usage = 0
+ 414 0000 80E0      		ldi r24,lo8(lcd)
+ 415 0002 90E0      		ldi r25,hi8(lcd)
+ 416 0004 0E94 0000 		call _ZN7Hd44780D1Ev
+ 417               	/* epilogue start */
+ 418 0008 0895      		ret
+ 420               		.global __do_global_dtors
+ 421               		.section .dtors,"a",@progbits
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 9
+
+
+ 422               		.p2align	1
+ 423 0000 0000      		.word	gs(_GLOBAL__sub_D_counter)
+ 424               	.global	data
+ 425               		.section	.bss.data,"aw",@nobits
+ 428               	data:
+ 429 0000 0000 0000 		.zero	7
+ 429      0000 00
+ 430               	.global	lcd
+ 431               		.section	.bss.lcd,"aw",@nobits
+ 434               	lcd:
+ 435 0000 0000 0000 		.zero	18
+ 435      0000 0000 
+ 435      0000 0000 
+ 435      0000 0000 
+ 435      0000 
+ 436               	.global	bytesWritten
+ 437               		.section	.bss.bytesWritten,"aw",@nobits
+ 440               	bytesWritten:
+ 441 0000 0000      		.zero	2
+ 442               	.global	strBuffer
+ 443               		.section	.bss.strBuffer,"aw",@nobits
+ 446               	strBuffer:
+ 447 0000 0000 0000 		.zero	50
+ 447      0000 0000 
+ 447      0000 0000 
+ 447      0000 0000 
+ 447      0000 0000 
+ 448               	.global	file
+ 449               		.section	.bss.file,"aw",@nobits
+ 452               	file:
+ 453 0000 0000 0000 		.zero	34
+ 453      0000 0000 
+ 453      0000 0000 
+ 453      0000 0000 
+ 453      0000 0000 
+ 454               	.global	res
+ 455               		.section	.bss.res,"aw",@nobits
+ 458               	res:
+ 459 0000 0000      		.zero	2
+ 460               	.global	disk
+ 461               		.section	.bss.disk,"aw",@nobits
+ 464               	disk:
+ 465 0000 0000 0000 		.zero	559
+ 465      0000 0000 
+ 465      0000 0000 
+ 465      0000 0000 
+ 465      0000 0000 
+ 466               	.global	umidade
+ 467               		.section	.data.umidade,"aw"
+ 470               	umidade:
+ 471 0000 16        		.byte	22
+ 472               	.global	counter
+ 473               		.section	.data.counter,"aw"
+ 476               	counter:
+ 477 0000 01        		.byte	1
+ 478               		.ident	"GCC: (GNU) 12.1.0"
+ 479               	.global __do_copy_data
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 10
+
+
+ 480               	.global __do_clear_bss
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.cpp
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:2      *ABS*:000000000000003e __SP_H__
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:3      *ABS*:000000000000003d __SP_L__
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:4      *ABS*:000000000000003f __SREG__
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:5      *ABS*:0000000000000000 __tmp_reg__
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:6      *ABS*:0000000000000001 __zero_reg__
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:11     .text._Z7getTickv:0000000000000000 _Z7getTickv
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:40     .text.main:0000000000000000 main
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:434    .bss.lcd:0000000000000000 lcd
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:464    .bss.disk:0000000000000000 disk
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:458    .bss.res:0000000000000000 res
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:452    .bss.file:0000000000000000 file
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:216    .text._Z22timer1CompareACallbackv:0000000000000000 _Z22timer1CompareACallbackv
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:476    .data.counter:0000000000000000 counter
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:470    .data.umidade:0000000000000000 umidade
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:428    .bss.data:0000000000000000 data
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:446    .bss.strBuffer:0000000000000000 strBuffer
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:440    .bss.bytesWritten:0000000000000000 bytesWritten
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:381    .text._Z22timer0CompareACallbackv:0000000000000000 _Z22timer0CompareACallbackv
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:392    .text._GLOBAL__sub_I_counter:0000000000000000 _GLOBAL__sub_I_counter
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:409    .text._GLOBAL__sub_D_counter:0000000000000000 _GLOBAL__sub_D_counter
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:181    .text.main:000000000000011e .L3
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:190    .text.main:0000000000000130 .L5
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:179    .text.main:000000000000011c .L7
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:154    .text.main:00000000000000e6 .L4
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:178    .text.main:000000000000011c .L6
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:234    .text._Z22timer1CompareACallbackv:000000000000001c .L14
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:291    .text._Z22timer1CompareACallbackv:0000000000000098 .L1
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:353    .text._Z22timer1CompareACallbackv:0000000000000120 .L10
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:368    .text._Z22timer1CompareACallbackv:0000000000000142 .L12
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:229    .text._Z22timer1CompareACallbackv:0000000000000016 .L8
+C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s:331    .text._Z22timer1CompareACallbackv:00000000000000ee .L11
+
+UNDEFINED SYMBOLS
+_ZN7Hd4478011dataPortSetEPVhh
+_ZN7Hd4478014controlPortSetEPVhhhh
+_ZN7Hd447804initENS_4SizeENS_4FontEbb
+timer0
+_ZN6Timer04initENS_4ModeENS_11ClockSourceE
+timer1
+_ZN6Timer14initENS_4ModeENS_11ClockSourceE
+usart0
+_ZN6Usart04initEv
+__iob
+usartStream
+printf
+sdCardCreate
+f_mount
+f_open
+_ZN7Hd447805stdioEv
+sprintf
+f_write
+f_sync
+mmc_disk_timerproc
+_ZN7Hd44780C1Ev
+__do_global_ctors
+GAS LISTING C:\Users\helen\AppData\Local\Temp\ccZyW2vx.s 			page 12
+
+
+_ZN7Hd44780D1Ev
+__do_global_dtors
+__do_copy_data
+__do_clear_bss
