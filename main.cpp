@@ -5,6 +5,7 @@
 #include "funsape/peripheral/timer0.hpp"
 #include "funsape/peripheral/timer1.hpp"
 #include "funsape/peripheral/usart0.hpp"
+#include "funsape/peripheral/adc.hpp"
 #include "fatFs/ff.h"
 #include "fatFs/mmc_avr.h"
 #include <string.h>
@@ -28,6 +29,8 @@ UINT bytesWritten;
 
 Hd44780 lcd;
 
+vuint16_t conversao = 0;
+
 typedef struct {
     uint8_t dia;
     uint8_t mes;
@@ -41,6 +44,10 @@ volatile DataHora data;
 
 int main()
 {
+
+    uint32_t aux32 = 0;
+
+
     //Configuração LCD
     lcd.dataPortSet(&DDRD, PD2);
     lcd.controlPortSet(&DDRC, PC2, PC0, PC1);
@@ -54,6 +61,18 @@ int main()
     timer1.init(Timer1::Mode::CTC_OCRA, Timer1::ClockSource::PRESCALER_1024);
     timer1.setCompareAValue(15619);
     timer1.activateCompareAInterrupt();
+
+
+    adc.enable();
+    adc.setReference(Adc::Reference::POWER_SUPPLY);
+    adc.setPrescaler(Adc::Prescaler::PRESCALER_128);
+    adc.setMode(Adc::Mode::AUTO_CONTINUOUS);
+    adc.setChannel(Adc::Channel::CHANNEL_3);
+    adc.disableDigitalInput(Adc::DigitalInput::INPUT_3);
+    adc.activateInterrupt();
+    adc.startConversion();
+    sei();
+
 
     // Usart configuration
     usart0.enableTransmitter();
@@ -80,7 +99,9 @@ int main()
     }
 
     while(1) {
-
+        aux32 = 100;
+        aux32 *= (uint32_t)conversao;
+        umidade = 100 - (uint16_t)(aux32 / 1023);
     }
 
     return 0;
@@ -88,10 +109,10 @@ int main()
 
 void timer1CompareACallback(void)
 {
-    if(counter == 10) {
+    if(counter == 2) {
         counter = 1;
         lcd.stdio();
-        printf("    Umidade:\n    %d kg/m3", umidade);
+        printf("    Umidade:\n    %d %%\n", umidade);
         usart0.stdio();
         //Escreve dados de umidade com data/hora
         sprintf(strBuffer, "%02d/%02d/%04d %02d:%02d:%02d - Umidade = %d kg/m3.\r\n", data.dia, data.mes, data.ano, data.hora,
@@ -119,4 +140,11 @@ void timer1CompareACallback(void)
 void timer0CompareACallback(void)
 {
     mmc_disk_timerproc();
+}
+
+
+void adcConversionCompleteCallback()
+{
+    conversao = ADC;
+    adc.startConversion();
 }
